@@ -27,6 +27,12 @@ jobs:
         run: npm install
       - name: Compilar Vite
         run: npm run build
+      - name: Verificar artefatos gerados
+        run: |
+          test -s dist/index.html
+          test -s dist/diagnostico.html
+          test -d dist/assets
+          echo 'HTML principal, diagnóstico e assets presentes.'
       - name: Configurar Pages
         uses: actions/configure-pages@v5
       - name: Enviar arquivos
