@@ -1,26 +1,32 @@
 # FRATERNIDADE STOA VIVA
 
-Portal privado da fraternidade. Identidade: preto e dourado. Essência: estoicismo, família, espiritualidade respeitosa, disciplina e irmandade.
+Portal da fraternidade, identidade preto e dourado. Lema: **Homens melhores. Legados maiores.**
 
-## Fase 1
-- Landing page responsiva
-- Formulário de login (Supabase Auth)
-- Verificação de status de membro no banco
-- Base SQL com RLS
+## Estado real do produto
+- Landing page responsiva em React + Vite.
+- Simulador de Fundo Fraterno: **sem pagamentos reais**.
+- Painel de membros/encontros: **protótipo visual sem dados reais**.
+- Cadastro e login: **não implementados**. Inputs desabilitados de propósito.
+- Banco existente no AUREON BASE (Neon PostgreSQL), schema isolado `stoa_viva`.
+- Nenhuma conta fundadora ativada e nenhum membro aprovado pelo site.
+- Publicação via GitHub Pages: workflow presente, mas ativação em Settings > Pages > Source: GitHub Actions e execução bem-sucedida ainda devem ser verificadas.
 
-## Executar
+## Desenvolvimento local
 ```bash
 npm install
-cp .env.example .env
 npm run dev
+npm run build
 ```
-Preencha VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY. Rode supabase/schema.sql no SQL Editor.
 
-**Importante:** Não há ainda painel de aprovação, convite seguro, nem área interna de membros. A interface não deve ser considerada um controle de acesso suficiente: toda tabela privada futura precisa de políticas RLS específicas e autorização no servidor. Não disponibilize credenciais nem service_role no frontend.
+## Publicação GitHub Pages
+1. Repositório > Settings > Pages > Build and deployment > Source: **GitHub Actions**.
+2. Acompanhar Actions > Publicar site no GitHub Pages.
+3. URL esperada: https://raphaelbuenocaptacao-creator.github.io/fraternidade-stoa-viva/
+4. **Não presumir publicação** antes de confirmar execução verde e abrir a URL.
 
-## Próximas etapas
-1. Configurar projeto Supabase e segredos no deploy.
-2. Criar backend seguro para convites e aprovação exclusiva do fundador.
-3. Área autenticada e painel de gestão.
-4. Calendário, código de honra e biblioteca.
-5. Testes de autorização e publicação.
+## Segurança
+GitHub Pages hospeda apenas frontend estático: **nunca** incluir credenciais do banco, secrets ou chaves administrativas no React. O backend para cadastro, autenticação e aprovação deve validar permissões no servidor. Somente o fundador pode aprovar membros; cadastro não concede acesso automaticamente. E-mail designado do fundador: stoaviva.oficial@gmail.com, sujeito a verificação segura e MFA.
+
+O repositório GitHub foi observado como **público**. Não incluir dados pessoais ou segredos.
+
+Documentos: `docs/CONTA-FUNDADOR.md`, `docs/CADASTRO-E-APROVACAO.md`, `docs/PLANO-SEGURANCA.md`.
